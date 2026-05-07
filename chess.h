@@ -1,37 +1,30 @@
 #ifndef CHESS_H
 #define CHESS_H
 
-// ============================================================
+
 //  chess.h — All Class Declarations
 //  Contains: Color enum, Piece (abstract), all 6 piece classes,
 //            Board class, Game class
-// ============================================================
 
 #include <iostream>
 #include <string>
 using namespace std;
 
 
-// ============================================================
 //  ENUM: Color
-// ============================================================
 enum Color { WHITE, BLACK, NONE };
 
 
-// ============================================================
 //  FORWARD DECLARATION
 //  Board is used inside Piece::isValidMove(), so we declare it
 //  here before the Piece class definition
-// ============================================================
 class Board;
 
 
-// ============================================================
 //  ABSTRACT BASE CLASS: Piece
 //  - Encapsulation  : private/protected data members
 //  - Abstraction    : pure virtual functions
 //  - All pieces inherit from this
-// ============================================================
 class Piece {
 protected:
     Color color;    // WHITE or BLACK
@@ -64,10 +57,8 @@ public:
 };
 
 
-// ============================================================
 //  DERIVED CLASS: Pawn
 //  Inherits from Piece
-// ============================================================
 class Pawn : public Piece {
 public:
     Pawn(Color c, int r, int co);
@@ -76,9 +67,7 @@ public:
 };
 
 
-// ============================================================
 //  DERIVED CLASS: Rook
-// ============================================================
 class Rook : public Piece {
 public:
     Rook(Color c, int r, int co);
@@ -87,9 +76,7 @@ public:
 };
 
 
-// ============================================================
 //  DERIVED CLASS: Knight
-// ============================================================
 class Knight : public Piece {
 public:
     Knight(Color c, int r, int co);
@@ -98,9 +85,7 @@ public:
 };
 
 
-// ============================================================
 //  DERIVED CLASS: Bishop
-// ============================================================
 class Bishop : public Piece {
 public:
     Bishop(Color c, int r, int co);
@@ -109,9 +94,7 @@ public:
 };
 
 
-// ============================================================
 //  DERIVED CLASS: Queen
-// ============================================================
 class Queen : public Piece {
 public:
     Queen(Color c, int r, int co);
@@ -120,9 +103,7 @@ public:
 };
 
 
-// ============================================================
 //  DERIVED CLASS: King
-// ============================================================
 class King : public Piece {
 public:
     King(Color c, int r, int co);
@@ -131,11 +112,9 @@ public:
 };
 
 
-// ============================================================
 //  CLASS: Board
 //  - Composition: contains Piece* objects in a 2D grid
 //  - Manages the 8x8 board state
-// ============================================================
 class Board {
 private:
     Piece* grid[8][8]; // 8x8 array of Piece pointers; nullptr = empty
@@ -169,11 +148,9 @@ public:
 };
 
 
-// ============================================================
 //  CLASS: Game
 //  - Manages overall game flow: setup, turns, input, win/draw
 //  - Composition: Game HAS-A Board
-// ============================================================
 class Game {
 private:
     Board board;       // Composition: Game HAS-A Board
