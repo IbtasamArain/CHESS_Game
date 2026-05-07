@@ -1,17 +1,14 @@
-// ============================================================
+
 //  chess.cpp — All Class Implementations
 //  Includes: Piece, Pawn, Rook, Knight, Bishop, Queen, King,
 //            Board, Game
-// ============================================================
 
 #include "chess.h"   // our own header
 #include <cctype>    // for tolower()
 using namespace std;
 
 
-// ============================================================
 //  Piece — Base Class Implementations
-// ============================================================
 
 Piece::Piece(Color c, int r, int co)
     : color(c), row(r), col(co), hasMoved(false) {}
@@ -27,13 +24,11 @@ void Piece::setHasMoved(bool val)     { hasMoved = val; }
 bool Piece::isWhite() const { return color == WHITE; }
 
 
-// ============================================================
 //  Pawn — Implementation
 //  Rules:
 //    - 1 square forward (2 on first move)
 //    - Captures 1 square diagonally forward
 //    - White moves UP (row+1), Black moves DOWN (row-1)
-// ============================================================
 
 Pawn::Pawn(Color c, int r, int co) : Piece(c, r, co) {}
 
@@ -64,12 +59,10 @@ bool Pawn::isValidMove(int toRow, int toCol, Board& board) const {
 }
 
 
-// ============================================================
 //  Rook — Implementation
 //  Rules:
 //    - Any number of squares horizontally or vertically
 //    - Cannot jump over other pieces
-// ============================================================
 
 Rook::Rook(Color c, int r, int co) : Piece(c, r, co) {}
 
@@ -101,12 +94,10 @@ bool Rook::isValidMove(int toRow, int toCol, Board& board) const {
 }
 
 
-// ============================================================
 //  Knight — Implementation
 //  Rules:
 //    - Moves in L-shape: 2+1 or 1+2 squares
 //    - Only piece that CAN jump over others
-// ============================================================
 
 Knight::Knight(Color c, int r, int co) : Piece(c, r, co) {}
 
@@ -128,12 +119,10 @@ bool Knight::isValidMove(int toRow, int toCol, Board& board) const {
 }
 
 
-// ============================================================
 //  Bishop — Implementation
 //  Rules:
 //    - Any number of squares diagonally
 //    - Cannot jump over other pieces
-// ============================================================
 
 Bishop::Bishop(Color c, int r, int co) : Piece(c, r, co) {}
 
@@ -165,13 +154,11 @@ bool Bishop::isValidMove(int toRow, int toCol, Board& board) const {
 }
 
 
-// ============================================================
 //  Queen — Implementation
 //  Rules:
 //    - Combination of Rook + Bishop
 //    - Any number of squares: straight OR diagonal
 //    - Cannot jump over other pieces
-// ============================================================
 
 Queen::Queen(Color c, int r, int co) : Piece(c, r, co) {}
 
@@ -210,12 +197,10 @@ bool Queen::isValidMove(int toRow, int toCol, Board& board) const {
 }
 
 
-// ============================================================
 //  King — Implementation
 //  Rules:
 //    - Moves exactly 1 square in any direction
 //    - Cannot move into check (enforced by Game class)
-// ============================================================
 
 King::King(Color c, int r, int co) : Piece(c, r, co) {}
 
@@ -240,7 +225,6 @@ bool King::isValidMove(int toRow, int toCol, Board& board) const {
 }
 
 
-// ============================================================
 //  Board — Implementations
 // ============================================================
 
@@ -290,17 +274,17 @@ bool Board::inBounds(int row, int col) const {
 // Display the board with column labels (a-h) and row numbers (1-8)
 void Board::display() const {
     cout << "\n    a  b  c  d  e  f  g  h\n";
-    cout << "   +--+--+--+--+--+--+--+--+\n";
+    cout << "   +---+---+---+---+---+---+---+---+\n";
     for (int r = 7; r >= 0; r--) {   // row 8 shown at top
         cout << " " << (r + 1) << " |";
         for (int c = 0; c < 8; c++) {
             if (grid[r][c] == nullptr)
-                cout << " .|";  // empty square
+                cout << " . |";  // empty square
             else
                 cout << " " << grid[r][c]->getSymbol() << "|";
         }
         cout << " " << (r + 1) << "\n";
-        cout << "   +--+--+--+--+--+--+--+--+\n";
+        cout << "   +---+---+---+---+---+---+---+---+\n";
     }
     cout << "    a  b  c  d  e  f  g  h\n\n";
 }
@@ -355,9 +339,7 @@ void Board::undoMove(int fromRow, int fromCol, int toRow, int toCol, Piece* capt
 }
 
 
-// ============================================================
 //  Game — Implementations
-// ============================================================
 
 Game::Game() : currentTurn(WHITE), gameOver(false) {
     setupBoard();
@@ -392,9 +374,7 @@ void Game::setupBoard() {
 
 // Parse "e2 e4" style input into row/col integers
 // Returns false if format is invalid
-bool Game::parseInput(const string& input,
-                      int& fromRow, int& fromCol,
-                      int& toRow,   int& toCol) {
+bool Game::parseInput(const string& input,int& fromRow, int& fromCol,int& toRow,   int& toCol) {
     if (input.size() < 5) return false;
 
     char fc = tolower(input[0]); // from-col: 'a'-'h'
@@ -542,5 +522,5 @@ void Game::play() {
         currentTurn = (currentTurn == WHITE) ? BLACK : WHITE;
     }
 
-    cout << "\nThanks for playing! Goodbye.\n";
+    cout << "\nThanks for playing\n";
 }
