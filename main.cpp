@@ -10,5 +10,10 @@ int main() {
     // Game loop ko start karein (yeh call chess.cpp wali Game::play() run karegi jahan color logic majood hai)
     chessGame.play();
 
+    //for compile command
+    //g++ main.cpp chess.cpp -o chessGame.exe
+    //for run command
+    //.\chessGame.exe
+
     return 0; 
 }
