@@ -1,15 +1,9 @@
 #ifndef CHESS_H
 #define CHESS_H
 
-
-//  chess.h All Class Declarations
-//  Contains: Color enum, Piece abstract, all 6 piece classes,
-//  Board class, Game class
-
 #include <iostream>
 #include <string>
 using namespace std;
-
 
 //  ENUM: Color
 enum Color { WHITE, BLACK, NONE };
@@ -21,10 +15,7 @@ enum Color { WHITE, BLACK, NONE };
 class Board;
 
 
-//  ABSTRACT BASE CLASS: Piece
-//  Encapsulation  : private/protected data members
-//  Abstraction    : pure virtual functions
-//  All pieces inherit from this
+
 class Piece {
 protected:
     Color color;    // WHITE or BLACK
@@ -38,7 +29,7 @@ public:
     // Virtual destructor needed for safe deletion via base pointer
     virtual ~Piece() {}
 
-    // PURE VIRTUAL FUNCTIONS (makes Piece abstract) 
+    // PURE VIRTUAL FUNCTIONS makes Piece abstract 
     virtual bool isValidMove(int toRow, int toCol, Board& board) const = 0;
     virtual char getSymbol()  const = 0;
 
@@ -166,7 +157,7 @@ private:
 public:
     Game();
     void play(); // main game loop
-};
+}
 
 
 #endif // CHESS_H
