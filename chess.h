@@ -18,11 +18,12 @@ class Board;
 
 class Piece {
 protected:
-    Color color;    // WHITE or BLACK
+    
     int   row, col; // position on the 8x8 board (0-indexed)
     bool  hasMoved; // used by Pawn (2-square first move)
 
 public:
+     Color color;    // WHITE or BLACK
     // Constructor
     Piece(Color c, int r, int co);
 
