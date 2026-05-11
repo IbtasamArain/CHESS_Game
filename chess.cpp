@@ -113,7 +113,7 @@ bool Rook::isValidMove(int toRow, int toCol, Board& board) const {
 Knight::Knight(Color c, int r, int co) : Piece(c, r, co) {}
 
 char Knight::getSymbol() const {
-    // 'N' because 'K' is reserved for King
+    // N use for knight
     return (color == WHITE) ? 'N' : 'n';
 }
 
